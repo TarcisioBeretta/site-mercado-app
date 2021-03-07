@@ -1,0 +1,31 @@
+<form [formGroup]="form" (submit)="submit()" class="mat-elevation-z8">
+
+  <h1>{{title}}</h1>
+
+  <input hidden #fileUpload type="file" accept="image/*" (change)="handleFile($event)">
+
+  <div class="preview-imagem" align="center">
+    <img [src]="imagemUrl">
+  </div>
+
+  <button mat-button type="button" class="button-upload" aria-label="Excluir" (click)="fileUpload.click()">
+    Selecione uma imagem <mat-icon>image</mat-icon>
+  </button>
+
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput type="text" formControlName="nome" />
+    <mat-error *ngIf="form.controls['nome'].errors?.required">Informe um nome para o produto</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Valor</mat-label>
+    <input matInput type="text" formControlName="valor" />
+    <mat-error *ngIf="form.controls['valor'].errors?.required">Informe o valor do produto</mat-error>
+  </mat-form-field>
+
+  <a [routerLink]="['', 'produtos']" mat-button>Cancelar</a>
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading || !imagemUrl">
+    {{loading ? 'Salvando...' : 'Salvar'}}
+  </button>
+</form>

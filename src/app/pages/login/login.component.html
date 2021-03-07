@@ -1,0 +1,17 @@
+<form [formGroup]="form" (submit)="submit()" class="mat-elevation-z8" align="right">
+
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput type="text" formControlName="username" />
+    <mat-error *ngIf="form.controls['username'].errors?.required">Campo obrigatório</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-error *ngIf="form.controls['password'].errors?.required">Campo obrigatório</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Login</button>
+
+</form>
